@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚜</text></svg>">
+  <title>Countdown Timer</title>
+</head>
+<body>
+    <style>
+        body{
+        
+        font-family: 'Atkinson Hyperlegible', sans-serif;
+        text-align: center;
+        font-size: 11.2vw;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 50px;
+        margin-left: 50px;
+        color: white;
+        background-color: black;
+    }
+    </style>
+
+  <div id="countdown"></div>
+
+  <script>
+    function countdown(targetDate) {
+      var currentDate = new Date();
+      var timeDifference = targetDate - currentDate;
+
+      if (timeDifference <= 0) {
+        document.getElementById("countdown").innerHTML = "chut chaat meri kutte, lauda daal ismein fuddi ke";
+        return;
+      }
+
+      var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      var countdownText = days + "~" + hours + ":" + minutes + ":" + seconds;
+      document.getElementById("countdown").innerHTML = countdownText;
+
+      setTimeout(function() {
+        countdown(targetDate);
+      }, 1000);
+    }
+
+    var targetDate = new Date(2023, 5, 25); // 5 represents June (months are zero-based)
+
+    while (targetDate <= new Date()) {
+      targetDate.setDate(targetDate.getDate() + 21);
+    }
+
+    countdown(targetDate);
+  </script>
+</body>
+</html>
